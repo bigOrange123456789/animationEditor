@@ -168,7 +168,7 @@ function ParamMeasure(obj,type){
             ,35
         );
     }
-    this.set();
+    //this.set();
 
 
 }
