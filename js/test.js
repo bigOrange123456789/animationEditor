@@ -258,6 +258,17 @@ Describe.prototype={
                     );
                 });
 
+                var button5=new Button("将起始帧复制到结束帧","#3498DB",'#2980B9','#01DFD7',10,150,200,40);
+                button5.rePos(10,600);//将起始帧的动作赋给结束帧
+                button5.addEvent(function () {
+                    measure.frameCopy(0,35);
+                });
+                var button6=new Button("将结束帧复制到起始帧","#3498DB",'#2980B9','#01DFD7',10,150,200,40);
+                button6.rePos(10,650);//将起始帧的动作赋给结束帧
+                button6.addEvent(function () {
+                    measure.frameCopy(35,0);
+                });
+
                 scope.button.addEvent(function () {//下载按钮的设置
                     glb.animations[0]=
                         controller.computeIntermediateFrame(glb.animations[0]);
