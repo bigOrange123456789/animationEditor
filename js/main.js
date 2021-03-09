@@ -62,6 +62,7 @@ Main.prototype={
             glb.scene.traverse(node=>{
                 if(node instanceof THREE.SkinnedMesh){
                     scope.handle(node,glb.animations);
+                    scope.handle2(node.clone(),glb.animations);
                 }
             });
         });
@@ -281,6 +282,16 @@ Main.prototype={
         requestAnimationFrame(updateAnimation);
     }
 },
+    handle2:function (mesh,animations) {
+        var controller=new SkinnedMeshController();
+        controller.init(mesh,animations[0]);
+        controller.mesh.rotation.set(Math.PI / 2, 0, 0);
+        controller.mesh.scale.set(0.5,0.5,0.5);
+        controller.mesh.position.set(50,-25,-100);
+        controller.autoPlay2();
+
+        this.scene.add(controller.mesh);
+    },
 }
 var myMain=new Main();
 myMain.start();

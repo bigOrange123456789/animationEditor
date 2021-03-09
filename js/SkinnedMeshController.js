@@ -38,8 +38,27 @@ SkinnedMeshController.prototype={
                 rootBoneClone.add(cloneBones(rootBone.children[i], boneArray));
             return rootBoneClone;
         }
+        var scope=this;
+        loop();
+        function loop() {
+            scope.computeIntermediateFrame(scope.animation);
+            requestAnimationFrame(loop);
+        }
     },
     //帧动画
+    autoPlay2:function(){
+        var scope=this;
+        var frameIndex=0;
+
+        updateAnimation();//
+        function updateAnimation() {//每帧更新一次动画
+            if(frameIndex>=35)scope.setTime(70-frameIndex);
+            else scope.setTime(frameIndex);
+            frameIndex++;
+            if(frameIndex===70)frameIndex=0;
+            requestAnimationFrame(updateAnimation);
+        }
+    },
     autoPlay:function() {//每帧更新一次动画--
         this.time+=this.speed;//t=0;
         var time=Math.floor(this.time%this.frameMax);
