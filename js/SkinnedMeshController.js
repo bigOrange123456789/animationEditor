@@ -149,4 +149,35 @@ SkinnedMeshController.prototype={
             link.click();
         },{animations: [animation]});
     },
+    download2:function (animation) {
+        console.log(animation);
+
+        var datas=[];
+
+        for(var time=0;time<36;time++)
+            for(var boneIndex=0;boneIndex<25;boneIndex++){
+                //var sca=animation.tracks[3*boneIndex];
+                var qua=animation.tracks[3*boneIndex+1];
+                var pos=animation.tracks[3*boneIndex+2];
+                console.log(time,qua.values[time*4]);
+                datas.push([
+                    boneIndex,
+                    time,
+                    qua.values[time*4],
+                    qua.values[time*4+1],
+                    qua.values[time*4+2],
+                    qua.values[time*4+3],
+                    pos.values[time*3],
+                    pos.values[time*3+1],
+                    pos.values[time*3+2]
+                ]);
+            }
+
+        let link = document.createElement('a');
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.href = URL.createObjectURL(new Blob([JSON.stringify({data:datas})], { type: 'text/plain' }));
+        link.download = "animationNew.json";
+        link.click();
+    },
 }

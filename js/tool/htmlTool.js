@@ -24,9 +24,9 @@ function Text(str,color,size,parentNode){//文本
     }
 }
 
-function ButtonS(str) {
-    this.element=p(str,"white","#2ECC71",20,120,50,document.body);
-    function p(html,color,background,size,width,height,parentNode){
+function ButtonS(str,y) {
+    this.element=p(str,"white","#2ECC71",20,120,50,document.body,y);
+    function p(html,color,background,size,width,height,parentNode,y){
         var oButton=document.createElement('p');//按钮
         oButton.innerHTML=html;
         oButton.style.cssText='font-size:'+size+'px;'//字体大小
@@ -39,7 +39,7 @@ function ButtonS(str) {
             +'border-radius: 6px;' 
             +'position:fixed;'//到窗体的位置
             +'left:'+(window.innerWidth-width-50)+'px;'//到部件左边距离
-            +'top:'+0+'px;'; //到部件右边 距离
+            +'top:'+y+'px;'; //到部件右边 距离
         //+'cursor:pointer;'
         oButton.style.cursor='hand';
         oButton.onmouseover=function(){
