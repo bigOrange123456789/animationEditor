@@ -4,9 +4,10 @@
     <list default="true" id="0b4d797a-08dd-47b6-918b-25854c902dab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/tool/UI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/tool/log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/AnimationProcessor.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/AnimationProcessor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/ParamMeasure.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/SkinnedMeshController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/SkinnedMeshController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play.html" beforeDir="false" afterPath="$PROJECT_DIR$/play.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +27,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../InstanceRenderingTest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../onlyMeetingNew" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -47,7 +48,7 @@
       <workItem from="1614763696944" duration="228000" />
       <workItem from="1614763927747" duration="202000" />
       <workItem from="1615120018893" duration="9937000" />
-      <workItem from="1615249516079" duration="3449000" />
+      <workItem from="1615249516079" duration="23497000" />
     </task>
     <servers />
   </component>
@@ -55,9 +56,9 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1615266238975">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1615275286390">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1615266238975" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1615275286390" />
   </component>
 </project>

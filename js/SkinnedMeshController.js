@@ -78,6 +78,8 @@ SkinnedMeshController.prototype={
             );
         }
     },
+
+    //保存下载骨骼动画的代码
     compose:function(x,y,z,w,sx,sy,sz,px,py,pz) {
         var x2 = x + x,	y2 = y + y, z2 = z + z;
         var xx = x * x2, xy = x * y2, xz = x * z2;
@@ -93,8 +95,6 @@ SkinnedMeshController.prototype={
         return te;
     },
     computeIntermediateFrame:function (animation) {
-        //this.animation
-        //console.log(animation);
         for(var i=0;i<25;i++){//25个骨头
             var position=animation.tracks[3*i].values;
             var quaternion=animation.tracks[3*i+1].values;
@@ -110,16 +110,24 @@ SkinnedMeshController.prototype={
             }
         }
         function get(k,begin,end) {
-            //console.log(k,begin,end);
             var k_max=35;
             return (k/k_max)*(end-begin)+begin;
         }
-        //console.log(animation.tracks);
         return animation;
     },
-}
-SkinnedMeshController.prototype.pmHandle=function (obj,animation) {
-    this.animationMixer=new THREE.AnimationMixer(obj);//动画混合器animationMixer是用于场景中特定对象的动画的播放器
-    this.animationMixer.clipAction(animation).play();//动画剪辑AnimationClip是一个可重用的关键帧轨道集，它代表动画。
-    return this.animationMixer;
+    download:function (animation) {
+        var scene=new THREE.Scene();
+        scene.add(this.mesh);
+        animation=this.computeIntermediateFrame(animation);
+        var gltfExporter = new THREE.GLTFExporter();
+        gltfExporter.parse(scene, function (result) {
+            var name="test.gltf";
+            let link = document.createElement('a');
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.href = URL.createObjectURL(new Blob([JSON.stringify(result)], { type: 'text/plain' }));
+            link.download = name;
+            link.click();
+        },{animations: [animation]});
+    },
 }
