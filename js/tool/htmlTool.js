@@ -153,6 +153,29 @@ function ButtonP(str,color1,color2,size,radius,w,h,parentNode) {
         parentNode.appendChild(oButton);
         return oButton;
     }
+
+    this.tex0=str;
+    this.tex1;
+    this.f0;
+    this.f2;
+    this.addEvent1=function (f0,str1,f1) {
+        this.f0=f0;
+        this.f1=f1;
+        this.tex1=str1;
+        var scope=this;
+        console.log(this.element);
+        this.element.οnclick=function(){
+            alert(11)
+        }/*onclick(function () {
+            if(button_material.element.innerHTML===scope.tex0){
+                button_material.element.innerHTML=scope.tex1;
+                scope.f0();
+            }else{
+                button_material.element.innerHTML=scope.tex0;
+                scope.f1();
+            }
+        });*/
+    }
 }
 
 ButtonP.prototype=ButtonS.prototype=Button.prototype=Text.prototype={

@@ -60,16 +60,10 @@ Describe.prototype={
     //动画修改测试
     test2:function (){
         this.setContext2();
-        console.log(this,this.camera)
-        //this.camera.position.set(0,0,-20);
-        var nameTest="输出帧序号，用于验证";
-        console.log('start test:'+nameTest);
-        //开始测试
+
         var scope=this;
         var loader= new THREE.GLTFLoader();
         loader.load("test.gltf", (glb) => {
-            console.log(glb);
-            //var mesh=glb.scene.children[0].children[0].children[1];//"myModel/avatar/Female.glb"
             glb.scene.traverse(node=>{
                 if(node instanceof THREE.SkinnedMesh){
                     launch(node);
@@ -101,12 +95,18 @@ Describe.prototype={
 
                 var material1=controller.mesh.material;
                 var material2=helper.material;
-                console.log(material2);
                 var material0=new THREE.MeshBasicMaterial({color:0xffffff, transparent: true,opacity: 0.5 });
                 helper.material=material0;
 
-                var button_material=new ButtonP("网格模式","#3498DB",'#2980B9',10,6,100,40);
-                button_material.rePos(500,5);
+                var measure=new ParamMeasure(glb.animations[0],2);
+                measure.boneIndex=8;
+                scope.tag.reStr("骨骼序号："+measure.boneIndex);
+                scope.tag.rePos(50,0);
+
+                var myUI=new UI();
+                myUI.init();
+
+                var button_material=myUI.button_material;
                 button_material.addEvent(function () {
                     if(button_material.element.innerHTML==="网格模式"){
                         button_material.element.innerHTML="骨骼模式";
@@ -119,14 +119,8 @@ Describe.prototype={
                     }
                 });
 
-                var measure=new ParamMeasure(glb.animations[0],2);
-                measure.boneIndex=8;
-                scope.tag.reStr("骨骼序号："+measure.boneIndex);
-                scope.tag.rePos(50,0);
-
-                var button_material2=new ButtonP("起始帧","#3498DB",'#2980B9',10,6,100,40);
-                button_material2.rePos(610,5);
-                button_material2.addEvent(function () {//动画共有36帧
+                var button_material2=myUI.button_material2;
+                myUI.button_material2.addEvent(function () {//动画共有36帧
                     if(button_material2.element.innerHTML==="起始帧"){
                         button_material2.element.innerHTML="结束帧";
                         measure.frameIndex=35;
@@ -142,6 +136,7 @@ Describe.prototype={
                     measure.boneIndex--;
                     if(measure.boneIndex<=-1)measure.boneIndex=24;
                 });
+
                 var button2=new ButtonP("下一个","#1ABC9C",'#16A085',15,70,90,40);
                 button2.rePos(340,-1);
                 button2.addEvent(function () {
