@@ -68,7 +68,8 @@ Main.prototype={
             glb.scene.traverse(node=>{
                 if(node instanceof THREE.SkinnedMesh){
                     scope.handle(node,glb.animations);
-                    scope.handle2(glb);
+                    scope.handle3(node,glb.animations);
+                    //scope.handle2(glb);
                 }
             });
         });

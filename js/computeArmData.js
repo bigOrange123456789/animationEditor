@@ -16,7 +16,7 @@ function compose(x,y,z,w,sx,sy,sz,px,py,pz ) {//quaternion scale,position
 //不进行插值
 function computeArmData(mesh,animation,callback){
         var nameTest="输出帧序号，用于验证";
-        console.log('start test:' + nameTest);
+        //console.log('start test:' + nameTest);
         //开始测试
         //开始计算matrix
         //var animation=glb.animations[0];

@@ -161,7 +161,7 @@ SkinnedMeshController.prototype={
                 var pos=animation.tracks[3*boneIndex];
                 var qua=animation.tracks[3*boneIndex+1];
                 //var pos=animation.tracks[3*boneIndex+2];
-                console.log(time,qua.values[time*4]);
+                //console.log(time,qua.values[time*4]);
                 datas.push([
                     boneIndex,
                     time,
@@ -175,17 +175,26 @@ SkinnedMeshController.prototype={
                 ]);
             }
 
-        let link = document.createElement('a');
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.href = URL.createObjectURL(new Blob([JSON.stringify({data:datas})], { type: 'text/plain' }));
-        link.download = "animationNew.json";
-        link.click();
+        computeArmData(
+            this.mesh,
+            this.animation,
+            function (data) {
+                //console.log("数组的长度为：",data.length);
+
+                let link = document.createElement('a');
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.href = URL.createObjectURL(new Blob([JSON.stringify({data:data})], { type: 'text/plain' }));
+                link.download = "animationData.json";
+                link.click();
+
+            }
+        );
     },
     //计算shader中所需的数据
     computeShaderData:function (glb,group) {
         var animation=this.animation;
-        console.log(animation);
+        //console.log(animation);
 
         var datas=[];
 
@@ -194,7 +203,6 @@ SkinnedMeshController.prototype={
                 var pos=animation.tracks[3*boneIndex];
                 var qua=animation.tracks[3*boneIndex+1];
                 //var pos=animation.tracks[3*boneIndex+2];
-                console.log(time,qua.values[time*4]);
                 datas.push([
                     boneIndex,
                     time,
@@ -212,8 +220,6 @@ SkinnedMeshController.prototype={
             this.mesh,
             this.animation,
             function (data) {
-                //console.log(data.toString());
-                console.log("数组的长度为：",data.length);
                 group.updateAnimationData5(data);
             }
         );

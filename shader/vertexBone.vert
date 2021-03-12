@@ -183,8 +183,7 @@ void Animation_init(){
     oAnimation.skeletonPos5=(oAnimation.skeletonPos4+SKELETON_SIZE4);
     oAnimation.skeletonPos6=(oAnimation.skeletonPos5+SKELETON_SIZE5);
 
-    //if(round(type[3])==4.)Animation_frameIndexSet(35.);//设置全局变量frame_index的值
-    //else
-    Animation_frameIndexSet(8.);
+    if(round(type[3])==4.)Animation_frameIndexSet(35.);//设置全局变量frame_index的值
+    else Animation_frameIndexSet(8.);
 }
 
