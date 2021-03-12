@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0b4d797a-08dd-47b6-918b-25854c902dab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/SkinnedMeshController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/SkinnedMeshController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/computeArmData.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/computeArmData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shader/vertexBone.vert" beforeDir="false" afterPath="$PROJECT_DIR$/shader/vertexBone.vert" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +22,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../onlyMeetingNew" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -50,7 +47,8 @@
       <workItem from="1615464000221" duration="2998000" />
       <workItem from="1615479214648" duration="28000" />
       <workItem from="1615483050294" duration="912000" />
-      <workItem from="1615541004657" duration="5833000" />
+      <workItem from="1615541004657" duration="5882000" />
+      <workItem from="1615548758082" duration="1399000" />
     </task>
     <servers />
   </component>

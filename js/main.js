@@ -68,8 +68,8 @@ Main.prototype={
             glb.scene.traverse(node=>{
                 if(node instanceof THREE.SkinnedMesh){
                     scope.handle(node,glb.animations);
-                    scope.handle3(node,glb.animations);
-                    //scope.handle2(glb);
+                    //scope.handle3(node,glb.animations);
+                    scope.handle2(glb);
                 }
             });
         });
@@ -302,10 +302,10 @@ Main.prototype={
     //处理1//用于观察经过PM和实例化处理后动画的效果
     handle2:function (glb) {
         var scope=this;
-        //男性模型开始
+        //开始
         var pmLoader2 = new MyPMLoader(
             {animations: []},
-            './model/Male',    //模型路径
+            './model/Female',    //模型路径
             [],//没有LOD分级//LOD等级的数组
             scope.camera,  //LOD需要判断到相机的距离
             0,       //有多个动画时,表示第0个动画//可以通过pmLoader.updateAnimation(i)来切换动画
@@ -318,10 +318,10 @@ Main.prototype={
                     [mesh2],//这些mesh的网格应该一致
                     true
                 );
-                peoples2.neckPosition=0.68;
+                //peoples2.neckPosition=0.68;
                 //peoples2.vertURL="shader/vertexBone2.vert";
                 //peoples2.fragURL="shader/fragment2.frag";
-                peoples2.init(['./texture/m/m00.jpg', './texture/m/m0.jpg'], 32);
+                peoples2.init(['./texture/w/w0.jpg', './texture/w/w0.jpg'], 16);
 
                 peoples2.rotationSet(0, [Math.PI / 2, 0, 0]);
                 peoples2.positionSet(0, [50,-25,-100]);
