@@ -134,6 +134,7 @@ SkinnedMeshController.prototype={
         }
         return animation;
     },
+    //下载为gltf格式
     download:function (animation) {
         var scene=new THREE.Scene();
         scene.add(this.mesh);
@@ -149,6 +150,7 @@ SkinnedMeshController.prototype={
             link.click();
         },{animations: [animation]});
     },
+    //下载为json格式
     download2:function (animation) {
         console.log(animation);
 
@@ -156,20 +158,20 @@ SkinnedMeshController.prototype={
 
         for(var time=0;time<36;time++)
             for(var boneIndex=0;boneIndex<25;boneIndex++){
-                //var sca=animation.tracks[3*boneIndex];
+                var pos=animation.tracks[3*boneIndex];
                 var qua=animation.tracks[3*boneIndex+1];
-                var pos=animation.tracks[3*boneIndex+2];
+                //var pos=animation.tracks[3*boneIndex+2];
                 console.log(time,qua.values[time*4]);
                 datas.push([
                     boneIndex,
                     time,
+                    pos.values[time*3],
+                    pos.values[time*3+1],
+                    pos.values[time*3+2],
                     qua.values[time*4],
                     qua.values[time*4+1],
                     qua.values[time*4+2],
-                    qua.values[time*4+3],
-                    pos.values[time*3],
-                    pos.values[time*3+1],
-                    pos.values[time*3+2]
+                    qua.values[time*4+3]
                 ]);
             }
 
@@ -179,5 +181,43 @@ SkinnedMeshController.prototype={
         link.href = URL.createObjectURL(new Blob([JSON.stringify({data:datas})], { type: 'text/plain' }));
         link.download = "animationNew.json";
         link.click();
+    },
+    //计算shader中所需的数据
+    computeShaderData:function (glb,group) {
+        var animation=this.animation;
+        console.log(animation);
+
+        var datas=[];
+
+        for(var time=0;time<36;time++)
+            for(var boneIndex=0;boneIndex<25;boneIndex++){
+                var pos=animation.tracks[3*boneIndex];
+                var qua=animation.tracks[3*boneIndex+1];
+                //var pos=animation.tracks[3*boneIndex+2];
+                console.log(time,qua.values[time*4]);
+                datas.push([
+                    boneIndex,
+                    time,
+                    pos.values[time*3],
+                    pos.values[time*3+1],
+                    pos.values[time*3+2],
+                    qua.values[time*4],
+                    qua.values[time*4+1],
+                    qua.values[time*4+2],
+                    qua.values[time*4+3]
+                ]);
+            }
+        //datas
+        computeArmData(
+            this.mesh,
+            this.animation,
+            function (data) {
+                //console.log(data.toString());
+                console.log("数组的长度为：",data.length);
+                group.updateAnimationData5(data);
+            }
+        );
+
+
     },
 }

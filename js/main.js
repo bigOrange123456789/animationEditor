@@ -7,8 +7,10 @@ function Main(){
     this.referee;
 
     this.button1;
+    this.controller;
 }
 Main.prototype={
+    //环境设置
     setContext:function () {
         this.frameIndex=this.frameIndexPre=0;
         var nameContext="";
@@ -30,6 +32,8 @@ Main.prototype={
         function init() {
             camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 10000);
             camera.position.z = 20;
+
+            this.camera=camera;
 
             scene = new THREE.Scene();
 
@@ -55,6 +59,7 @@ Main.prototype={
         this.scene=scene;
         this.camera=camera;
     },
+    //启动
     start:function (){
         this.setContext();
         var scope=this;
@@ -63,12 +68,13 @@ Main.prototype={
             glb.scene.traverse(node=>{
                 if(node instanceof THREE.SkinnedMesh){
                     scope.handle(node,glb.animations);
-                    scope.handle2(node.clone(),glb.animations);
+                    scope.handle2(glb);
                 }
             });
         });
         //完成测试
     },
+    //处理1（主要）
     handle: function (mesh, animations) {
         var scope = this;
         var controller = new SkinnedMeshController();
@@ -77,6 +83,7 @@ Main.prototype={
         controller.mesh.scale.set(0.5, 0.5, 0.5);
         controller.mesh.position.set(0, -25, -100);
         this.scene.add(controller.mesh);
+        this.controller=controller;
 
         var helper = new THREE.SkeletonHelper(controller.mesh);
         helper.material = new THREE.LineBasicMaterial({
@@ -291,7 +298,59 @@ Main.prototype={
             requestAnimationFrame(updateAnimation);
         }
     },
-    handle2:function (mesh,animations) {
+    //处理1//用于观察经过PM和实例化处理后动画的效果
+    handle2:function (glb) {
+        var scope=this;
+        //男性模型开始
+        var pmLoader2 = new MyPMLoader(
+            {animations: []},
+            './model/Male',    //模型路径
+            [],//没有LOD分级//LOD等级的数组
+            scope.camera,  //LOD需要判断到相机的距离
+            0,       //有多个动画时,表示第0个动画//可以通过pmLoader.updateAnimation(i)来切换动画
+            0,     //动画播放速度//可以通过调整pmLoader.animationSpeed来调整速度
+            [],
+            function () {
+                var mesh2 = pmLoader2.rootObject.children[0];
+                var peoples2 = new InstancedGroup(
+                    1,//908
+                    [mesh2],//这些mesh的网格应该一致
+                    true
+                );
+                peoples2.neckPosition=0.68;
+                //peoples2.vertURL="shader/vertexBone2.vert";
+                //peoples2.fragURL="shader/fragment2.frag";
+                peoples2.init(['./texture/m/m00.jpg', './texture/m/m0.jpg'], 32);
+
+                peoples2.rotationSet(0, [Math.PI / 2, 0, 0]);
+                peoples2.positionSet(0, [50,-25,-100]);
+                peoples2.scaleSet(0, [0.5, 0.5, 0.5]);//最后一个是高
+
+                peoples2.animationSet(0, 4);
+                peoples2.speedSet(0, 1);
+
+                scope.scene.add(peoples2.obj);
+
+                setInterval(function () {
+                    scope.controller.computeShaderData(glb,peoples2);
+                },1000)
+
+
+                var timeId2 = setInterval(function () {
+                    mesh2 = pmLoader2.rootObject.children[0];
+                    peoples2.setGeometry(mesh2.geometry);
+                    console.log(pmLoader2.finished);
+                    if (pmLoader2.finished) window.clearInterval(timeId2)
+                }, 100);
+            },
+            1
+        );
+        //男性模型结束
+
+
+    },
+    //处理3
+    handle3:function (mesh,animations) {
         var controller=new SkinnedMeshController();
         controller.init(mesh,animations[0]);
         controller.mesh.rotation.set(Math.PI / 2, 0, 0);
