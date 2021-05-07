@@ -138,6 +138,8 @@ SkinnedMeshController.prototype={
     download:function (animation) {
         var scene=new THREE.Scene();
         scene.add(this.mesh);
+        console.log(this.mesh.material.map)
+        console.log(this.mesh.material.map.image)
         animation=this.computeIntermediateFrame(animation);
         var gltfExporter = new THREE.GLTFExporter();
         gltfExporter.parse(scene, function (result) {

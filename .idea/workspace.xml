@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0b4d797a-08dd-47b6-918b-25854c902dab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/AnimationProcessor.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/AnimationProcessor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/SkinnedMeshController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/SkinnedMeshController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +51,19 @@
       <workItem from="1615541004657" duration="5882000" />
       <workItem from="1615548758082" duration="3389000" />
       <workItem from="1615633023272" duration="206000" />
+      <workItem from="1615689761748" duration="10000" />
+      <workItem from="1615699873549" duration="1203000" />
+      <workItem from="1615734670496" duration="1939000" />
+      <workItem from="1616150570798" duration="781000" />
+      <workItem from="1616584689535" duration="89000" />
+      <workItem from="1617094749317" duration="2570000" />
+      <workItem from="1617329605018" duration="251000" />
+      <workItem from="1617330080994" duration="846000" />
+      <workItem from="1617371829653" duration="115000" />
+      <workItem from="1617699076933" duration="3983000" />
+      <workItem from="1617812723537" duration="1806000" />
+      <workItem from="1617845242759" duration="271000" />
+      <workItem from="1617885585530" duration="1222000" />
     </task>
     <servers />
   </component>
@@ -59,10 +71,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1615551508822">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1617845512319">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1615551508822" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1617845512319" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1615543150086">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

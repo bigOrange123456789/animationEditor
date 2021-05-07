@@ -64,15 +64,84 @@ Main.prototype={
         this.setContext();
         var scope=this;
         var loader= new THREE.GLTFLoader();
+
         loader.load("test.gltf", (glb) => {
+            decompression(glb)
+            console.log(glb)
             glb.scene.traverse(node=>{
                 if(node instanceof THREE.SkinnedMesh){
+                    console.log(node)
+                    //node.scale.set(20,1,1)
                     scope.handle(node,glb.animations);
                     scope.handle3(node,glb.animations);
                     //scope.handle2(glb);
                 }
             });
         });
+
+        function decompression(glb) {
+            var tracks=glb.animations[0].tracks;
+            var time=tracks[0].times.length;
+            var times=[]
+            var value0=[];//position
+            var value1=[];//quaternion
+            var value2=[];//scale
+            for(var i=0;i<time;i++){
+                times.push(tracks[0].times[i]);
+                value0.push(0);value0.push(0);value0.push(0);
+                value1.push(0);value1.push(0);value1.push(0);value1.push(1);
+                value2.push(1);value2.push(1);value2.push(1);
+            }
+            glb.scene.traverse(node=>{
+                if(node instanceof THREE.SkinnedMesh){
+                    var bones=node.skeleton.bones;
+                    var tracks_new=[];
+                    var kk=0;
+                    while(kk<bones.length){
+
+                        var t;
+                        t=getTrackByName(tracks,bones[kk].name+".position");
+                        if(!t){
+                            t=new THREE.VectorKeyframeTrack(
+                                bones[kk].name+".position",times,value0
+                            );
+                        }
+                        tracks_new.push(t);
+
+                        t=getTrackByName(tracks,bones[kk].name+".quaternion");
+                        if(!t){
+                            t=new THREE.QuaternionKeyframeTrack(
+                                bones[kk].name+".position",times,value1
+                            );
+                        }
+                        tracks_new.push(t);
+
+                        t=getTrackByName(tracks,bones[kk].name+".scale");
+                        if(!t){
+                            t=new THREE.VectorKeyframeTrack(
+                                bones[kk].name+".position",times,value2
+                            );
+                        }
+                        tracks_new.push(t);
+
+                        kk++;
+                    }
+                    glb.animations[0].tracks=tracks_new;
+                }
+            });
+            function getTrackByName(arr,name){
+                var result=null;
+                for(var ii=0;ii<arr.length;ii++){
+                    if(arr[ii].name===name)result=arr[ii]
+                }
+                return result;
+            }
+
+        }
+
+        /*loader.load("test.gltf", (glb) => {
+            decompression(glb)
+        });*/
         //完成测试
     },
     //处理1（主要）
@@ -355,6 +424,7 @@ Main.prototype={
         var controller=new SkinnedMeshController();
         controller.init(mesh,animations[0]);
         controller.mesh.rotation.set(Math.PI / 2, 0, 0);
+        //controller.mesh.scale.set(50,50,50);
         controller.mesh.scale.set(0.5,0.5,0.5);
         controller.mesh.position.set(50,-25,-100);
         controller.autoPlay2();
