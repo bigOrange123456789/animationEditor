@@ -193,6 +193,47 @@ SkinnedMeshController.prototype={
             }
         );
     },
+    //将整个动画数据下载为json格式
+    download3:function (animation) {
+        console.log(animation);
+
+        var datas=[];
+
+        for(var time=0;time<36;time++)
+            for(var boneIndex=0;boneIndex<25;boneIndex++){
+                var pos=animation.tracks[3*boneIndex];
+                var qua=animation.tracks[3*boneIndex+1];
+                //var pos=animation.tracks[3*boneIndex+2];
+                //console.log(time,qua.values[time*4]);
+                datas.push([
+                    boneIndex,
+                    time,
+                    pos.values[time*3],
+                    pos.values[time*3+1],
+                    pos.values[time*3+2],
+                    qua.values[time*4],
+                    qua.values[time*4+1],
+                    qua.values[time*4+2],
+                    qua.values[time*4+3]
+                ]);
+            }
+
+        computeAllData(
+            this.mesh,
+            this.animation,
+            function (data) {
+                //console.log("数组的长度为：",data.length);
+
+                let link = document.createElement('a');
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.href = URL.createObjectURL(new Blob([JSON.stringify({data:data})], { type: 'text/plain' }));
+                link.download = "animationData.json";
+                link.click();
+
+            }
+        );
+    },
     //计算shader中所需的数据
     computeShaderData:function (glb,group) {
         var animation=this.animation;

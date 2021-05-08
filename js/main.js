@@ -22,6 +22,7 @@ Main.prototype={
         this.button_flag=true;
         this.button=new ButtonS("保存为gltf",40);
         this.button2=new ButtonS("保存为json",100);
+        this.button3=new ButtonS("保存为json'",160);
 
 
 
@@ -345,6 +346,9 @@ Main.prototype={
         scope.button2.addEvent(function () {//下载按钮的设置
             controller.download2(animations[0]);
         });
+        scope.button3.addEvent(function () {//下载按钮的设置
+            controller.download3(animations[0]);
+        });
 
         updateAnimation();//
         function updateAnimation() {//one->ui
@@ -431,6 +435,8 @@ Main.prototype={
 
         this.scene.add(controller.mesh);
     },
+
+
 }
 var myMain=new Main();
 myMain.start();
